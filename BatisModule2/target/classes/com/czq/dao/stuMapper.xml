@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.czq.dao.StuMapper">
+
+
+    <resultMap type="com.czq.entity.Stu" id="StuResultMap">
+        <id property="id" column="stuno"/>
+        <result property="name" column="stuname"/>
+        <result property="age" column="stuage"/>
+        <result property="address" column="stuaddress"/>
+        <result property="grade" column="graname"/>
+    </resultMap>
+
+    <select id="queryStudentByStuNo" parameterType="int" resultMap="StuResultMap">
+        select *
+        from student
+        where stuno = #{id}
+    </select>
+
+    <select id="queryStudentByStuNoWithHashMap" parameterType="int" resultType="com.czq.entity.Stu">
+        select stuno      as "id",
+               stuname    as "name",
+               stuage     as "age",
+               stuaddress as "address",
+               graname    as "grade"
+        from student
+        where stuno = #{id}
+    </select>
+
+
+    <select id="queryAllStudent" resultType="com.czq.entity.Stu">
+        select stuno      as "id",
+               stuname    as "name",
+               stuage     as "age",
+               stuaddress as "address",
+               graname    as "grade"
+        from student
+    </select>
+
+    <select id="queryStudentByStuName" parameterType="String" resultMap="StuResultMap">
+        select *
+        from student
+        where stuname = #{name}
+    </select>
+
+    <select id="queryStudentLikeStuName" parameterType="String" resultMap="StuResultMap">
+        select *
+        from student
+        where stuname like '%${value}%'
+    </select>
+
+    <insert id="insertStudent" parameterType="com.czq.entity.Stu">
+        insert into student (stuno, stuname, stuage, stuaddress, graname)
+        values (#{id}, #{name}, #{age}, #{address}, #{grade})
+    </insert>
+
+    <delete id="deleteStudentByStuNo" parameterType="int">
+        delete
+        student where stuno =
+        #{StuNo}
+    </delete>
+
+    <delete id="updateStudentByStuNo" parameterType="com.czq.entity.Stu">
+        update student
+        set stuname=#{stuName},
+            stuage=#{stuAge},
+            stuaddress=#{stuAddress},
+            graname=#{graName}
+        where stuno = #{stuNo}
+    </delete>
+
+</mapper>

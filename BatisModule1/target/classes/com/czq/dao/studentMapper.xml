@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.czq.dao.StudentDao">
+
+
+    <select id="queryStudentByStuNo" parameterType="int" resultType="com.czq.entity.Student" >
+        select * from student where stuno = #{stuNo}
+    </select>
+
+    <select id="queryStudentByStuName" parameterType="String" resultType="com.czq.entity.Student">
+        select * from student where stuname = '${value}'
+    </select>
+
+    <select id="queryStudentByStuNameWithHashMap" parameterType="HashMap" resultType="com.czq.entity.Student">
+        select * from student where stuname = #{studentName}
+    </select>
+
+    <select id="queryStudentLikeStuNameWithHashMap" parameterType="HashMap" resultType="HashMap">
+        select * from student where stuname like '%${stuname}%'
+    </select>
+
+    <select id="queryStudentByAgeAndName" resultType="com.czq.entity.Student" parameterType="com.czq.entity.Student">
+        select * from student
+        <where>
+            <if test="stuName != null and stuName!=''">
+                and stuname = #{stuName}
+            </if>
+            <if test="stuAge != null and stuAge!=''">
+                and stuage = #{stuAge}
+            </if>
+            <if test="graName != null and graName!=''">
+                and graname = #{graName}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryAllStudent" resultType="com.czq.entity.Student">
+        select * from student
+    </select>
+
+    <select id="queryStudentByGrade" parameterType="com.czq.entity.Grade" resultType="com.czq.entity.Student">
+        select * from student
+        <where>
+            <if test="stuNos != null and stuNos.size>0">
+                <foreach collection="stuNos" open=" and stuno in (" close=")" item="stuNo" separator=",">
+                    #{stuNo}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="queryStudentWithArray" parameterType="int[]" resultType="com.czq.entity.Student">
+        select * from student
+        <where>
+            <if test="array != null and array.length>0">
+                <foreach collection="array" open=" and stuno in (" close=")" item="stuNo" separator=",">
+                    #{stuNo}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="queryStudentWithList" parameterType="list" resultType="com.czq.entity.Student">
+        select * from student
+        <where>
+            <if test="list != null and list.size>0">
+                <foreach collection="list" open=" and stuno in (" close=")" item="stuNo" separator=",">
+                    #{stuNo}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="queryStudentWithObjectArray" parameterType="Object[]" resultType="com.czq.entity.Student">
+        select * from student
+        <where>
+            <if test="array != null and array.length>0">
+                <foreach collection="array" open=" and stuno in (" close=")" item="Student" separator=",">
+                    #{Student.stuNo}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+
+
+    <insert id="insertStudent" parameterType="com.czq.entity.Student">
+        insert into Student (stuno, stuname, stuage, stuaddress, graname)
+        values (#{stuNo}, #{stuName}, #{stuAge}, #{stuAddress}, #{graName})
+    </insert>
+
+    <delete id="deleteStudentByStuNo" parameterType="int">
+        delete
+        student where stuno =
+        #{StuNo}
+    </delete>
+
+    <delete id="updateStudentByStuNo" parameterType="com.czq.entity.Student">
+        update student
+        set stuname=#{stuName},
+            stuage=#{stuAge},
+            stuaddress=#{stuAddress},
+            graname=#{graName}
+        where stuno = #{stuNo}
+    </delete>
+
+</mapper>

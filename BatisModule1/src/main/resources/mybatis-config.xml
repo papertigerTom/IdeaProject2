@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!--将org.czq.entity包中的所有类都取别名，别名就是类名（不带包名的类名）
+    <typeAliases>
+        <package name="org.czq.entity" />
+    </typeAliases>
+    -->
+
+
+<!--    <settings>
+        &lt;!&ndash; 开启日志，Log4j&ndash;&gt;
+        <setting name="logImpl" value="LOG4J"/>
+
+        &lt;!&ndash; 开启延时加载&ndash;&gt;
+        <setting name="lazyLoadingEnabled" value="true"/>
+        &lt;!&ndash; 关闭立即加载&ndash;&gt;
+        <setting name="aggressiveLazyLoading" value="false"/>
+
+        &lt;!&ndash; 开启二级缓存&ndash;&gt;
+        <setting name="cacheEnabled" value="true"/>
+
+    </settings>-->
+
+
+    <properties resource="db.properties" />
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="com/czq/dao/studentMapper.xml"/>
+    </mappers>
+
+</configuration>

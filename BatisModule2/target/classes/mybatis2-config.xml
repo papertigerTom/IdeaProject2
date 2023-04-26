@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!--将org.czq.entity包中的所有类都取别名，别名就是类名（不带包名的类名）
+    <typeAliases>
+        <package name="org.czq.entity" />
+    </typeAliases>
+
+    <typeAliases>
+        <typeAlias type="org.czq.entity.Stu" alias="Stu" />
+    </typeAliases>
+    -->
+
+    <properties resource="db.properties" />
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="com/czq/dao/stuMapper.xml"/>
+    </mappers>
+
+</configuration>
