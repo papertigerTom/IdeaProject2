@@ -10,7 +10,7 @@ import java.util.*;
 
 
 public class StudentDaoTest {
-
+    //ls111 --演示冲突
     @Test
     //查询，根据stuno查询学生
     public void test1() {
