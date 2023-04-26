@@ -47,6 +47,4 @@ public interface StudentDao {
     //根据学号修改
     void updateStudentByStuNo(Student student);
 
-
-
 }
