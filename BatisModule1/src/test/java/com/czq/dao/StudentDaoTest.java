@@ -11,6 +11,7 @@ import java.util.*;
 
 public class StudentDaoTest {
     //zs在本地的修改 --演示冲突
+    //ls在远程的修改 --演示冲突
     @Test
     //查询，根据stuno查询
     public void test1() {
