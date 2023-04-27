@@ -20,7 +20,7 @@ public class StudentDaoTest {
         System.out.println(student);
         session.close();
     }
-    //zs222 --演示冲突
+    
     @Test
     //根据stuname查询学生
     public void test() {
