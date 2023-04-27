@@ -12,7 +12,7 @@ import java.util.*;
 public class StudentDaoTest {
     //ls111 --演示冲突
     @Test
-    //查询，根据stuno查询学生
+    //查询，根据stuno查询
     public void test1() {
         SqlSession session = MyBatisUtils.getSqlSession();
         StudentDao mapper = session.getMapper(StudentDao.class);
@@ -20,7 +20,7 @@ public class StudentDaoTest {
         System.out.println(student);
         session.close();
     }
-
+    //zs222 --演示冲突
     @Test
     //根据stuname查询学生
     public void test() {
